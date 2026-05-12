@@ -5,7 +5,6 @@
 # 1. CARGA DE LIBRERÍAS
 if(!require(pacman)) install.packages("pacman")
 pacman::p_load(tidyverse, data.table, lmtest, sandwich, broom, stargazer, psych, ggplot2, patchwork)
-# Instalar si no lo tienes
 if(!require(modelsummary)) install.packages("modelsummary")
 library(modelsummary)
 # 2. CARGA DE DATOS
@@ -189,7 +188,7 @@ ggplot(betas_por_anio, aes(x = factor(ANO), y = estimate)) +
   labs(title = "Estabilidad de los Retornos a la Educación", y = "Retorno (Beta)", x = "Año") + theme_minimal()
 
 # ------------------------------------------------------------------------------
-# 1. ESTIMACIÓN DE LOS 5 MODELOS (Sin variable Año, como pediste)
+# 1. ESTIMACIÓN DE LOS 5 MODELOS 
 # ------------------------------------------------------------------------------
 
 # A) MODELO COMPLETO (Base)
@@ -233,7 +232,7 @@ cat("\n>>> MODELO SOLO EXPERIENCIA <<<\n")
 print(coeftest(modelo_solo_experiencia, vcov = vcovHC(modelo_solo_experiencia, type = "HC1")))
 
 # ------------------------------------------------------------------------------
-# 3. CREACIÓN DE LA TABLA FINAL DE ROBUSTEZ (TIDY)
+# 3. TABLA FINAL DE ROBUSTEZ 
 # ------------------------------------------------------------------------------
 # Aquí unimos todos los modelos en una sola tabla larga para hacer View()
 # NOTA: Usamos tidy sobre el coeftest para jalar los errores robustos y p-valores correctos.
